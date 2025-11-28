@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (res.ok) {
         alert("✅ Sucesso! O relatório foi enviado para o cliente.");
         // Volta para a tela inicial
-        window.location.href = "../../html/usuarios.html";
+        window.location.href = "../../html/usuario.html";
       } else {
         const err = await res.json();
         alert("Erro ao enviar: " + (err.error || "Erro desconhecido"));

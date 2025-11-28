@@ -1,62 +1,48 @@
 import nodemailer from "nodemailer";
 
-// Configuração de Teste (Ethereal)
-// O Nodemailer cria uma conta temporária se não passarmos nada, mas vamos fixar uma aqui
-// Se quiser usar Gmail depois, é só mudar aqui.
+// --- CONFIGURAÇÃO DO GMAIL ---
+// Importante: Você precisa usar uma "Senha de App" gerada nas configurações da sua conta Google.
 const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
-  port: 587,
+  service: "gmail",
   auth: {
-    user: "joshuah.rempel@ethereal.email", // Usuário de teste gerado
-    pass: "v1t2S1X3D45s6Y7z89", // Senha de teste
+    user: "pablohenriquesouzaa@gmail.com",
+    pass: "pcvg mwkf eikz cugr",
   },
 });
 
-// Se a conta acima expirar, descomente a linha abaixo para gerar uma nova na hora (só para dev)
-// nodemailer.createTestAccount().then(account => { /* log account */ });
-
 export const enviarEmailComAnexo = async (emailDestino, dados, pdfBuffer) => {
-  // Tenta criar conta de teste na hora se a fixa falhar (garantia)
-  let testAccount = await nodemailer.createTestAccount();
-  const mailer = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
-    secure: false,
-    auth: {
-      user: testAccount.user,
-      pass: testAccount.pass,
-    },
-  });
+  try {
+    console.log("📨 Preparando envio pelo Gmail...");
 
-  const info = await mailer.sendMail({
-    from: '"Sistema SincoFarma" <noreply@sincofarma.com>',
-    to: emailDestino, // O email que você passar
-    subject: `Relatório de Avaliação - Farmácia ${dados.farmacia_id}`,
-    text: "Olá, segue em anexo o relatório técnico da visita realizada.",
-    html: `
-            <div style="font-family: Arial;">
+    const info = await transporter.sendMail({
+      from: '"Sistema SincoFarma" <geos.enrico89@gmail.com>', // Quem envia
+      to: emailDestino, // Quem recebe
+      subject: `Relatório de Avaliação - Farmácia ${dados.farmacia_id}`,
+      text: "Olá, segue em anexo o relatório técnico da visita realizada.",
+      html: `
+            <div style="font-family: Arial, sans-serif; color: #333;">
                 <h2 style="color: #2962ff;">Relatório Disponível</h2>
-                <p>A visita na farmácia <strong>${dados.farmacia_id}</strong> foi concluída.</p>
-                <p>A pontuação final foi: <strong>${dados.pontuacao_total}</strong>.</p>
+                <p>A visita na farmácia <strong>${dados.farmacia_id}</strong> foi concluída com sucesso.</p>
+                <p><strong>Pontuação Final:</strong> ${dados.pontuacao_total}</p>
+                <hr>
+                <p>Baixe o PDF em anexo para ver os detalhes completos.</p>
                 <br>
-                <p>Baixe o PDF em anexo para ver os detalhes.</p>
+                <small>Enviado automaticamente pelo Sistema SincoFarma.</small>
             </div>
         `,
-    attachments: [
-      {
-        filename: `Relatorio_Visita_${dados.farmacia_id}.pdf`,
-        content: pdfBuffer,
-        contentType: "application/pdf",
-      },
-    ],
-  });
+      attachments: [
+        {
+          filename: `Relatorio_Visita_${dados.farmacia_id}.pdf`,
+          content: pdfBuffer,
+          contentType: "application/pdf",
+        },
+      ],
+    });
 
-  console.log("📨 E-mail enviado com sucesso!");
-  // Este link é mágico: ele abre uma caixa de entrada fake para você ver o email que acabou de enviar!
-  console.log(
-    "🔗 CLIQUE AQUI PARA VER O EMAIL:",
-    nodemailer.getTestMessageUrl(info)
-  );
-
-  return info;
+    console.log("✅ E-mail enviado com sucesso! ID:", info.messageId);
+    return info;
+  } catch (error) {
+    console.error("❌ Erro ao enviar e-mail pelo Gmail:", error);
+    throw error; // Repassa o erro para o controller saber que falhou
+  }
 };
