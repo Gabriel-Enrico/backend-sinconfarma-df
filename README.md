@@ -105,8 +105,14 @@ Depois, na raiz do projeto, execute:
     .gitignore                 # Arquivos ignorados pelo Git
 
 ------------------------------------------------------------------------
+## 🔨 6. Sugestões de Melhoria
 
-## 👥 6. Autores
+-   Verificação instantânea da foto, para confirmar localização do avaliador.
+-   Inserir uma tela com mapa indicando a rota para a Farmácia.
+-   Adquirir um servidor para colocar o projeto para funcionar 24/7.
+-   Reconhecimento facial no Login.
+------------------------------------------------------------------------
+## 👥 7. Autores
 
 Projeto desenvolvido pela **Squad 09**:
 
