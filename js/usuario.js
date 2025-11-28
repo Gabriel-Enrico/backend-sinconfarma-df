@@ -71,6 +71,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     phoneElement.innerHTML = `${iconSvg} ${formatarTelefone(usuario.telefone)}`;
   }
 
+  document.querySelector(".btn--primary").addEventListener("click", () => {
+    window.location.href = "./forms/add-foto.html";
+  });
+
   // 6. Logout
   const btnLogout = document.querySelector(".btn--secondary");
   if (btnLogout) {
