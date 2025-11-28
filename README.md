@@ -40,6 +40,7 @@ Siga os passos abaixo para rodar o MVP em um ambiente limpo:
   Ferramenta    Link para Download
   ------------- --------------------------------
   **Docker**    https://www.docker.com/
+  
   **Node.js**   https://nodejs.org/pt/download
 
 ------------------------------------------------------------------------
