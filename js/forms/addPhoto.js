@@ -80,20 +80,16 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem("foto_fachada", data.url);
+      console.log("ENTROU NO OK");
 
-        alert("Foto enviada com sucesso!");
+      const data = await response.json();
+      localStorage.setItem("foto_fachada", data.url);
 
-        // Lógica robusta de redirecionamento para mesma pasta
-        const currentUrl = window.location.href;
-        // Remove o nome do arquivo atual e pega a pasta base
-        const basePath = currentUrl.substring(0, currentUrl.lastIndexOf("/"));
-        const params = window.location.search;
+      alert("Foto enviada com sucesso!");
 
-        // Monta o novo caminho
-        window.location.href = basePath + "/inserirCnpj.html" + params;
-      } else {
+      const base = window.location.href.substring(0, window.location.href.lastIndexOf("/") + 1);
+      window.location.href = base + "inserirCnpj.html";
+    } else {
         const err = await response.json();
         alert("Erro no servidor: " + (err.error || "Falha desconhecida"));
         submitBtn.innerText = textoOriginal;
