@@ -49,7 +49,6 @@ Siga os passos abaixo para rodar o MVP em um ambiente limpo:
 Você pode baixar manualmente pelo GitHub ou usar o comando:
 
     git clone https://github.com/lucasppl/saas-sinconfarma-df
-    cd Projeto-Porto-Digital
 
 > ⚠️ Requer **Git** instalado.
 
