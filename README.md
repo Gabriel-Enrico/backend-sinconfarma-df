@@ -120,3 +120,8 @@ Projeto desenvolvido pela **Squad 09**:
 -   **Pablo Henrique Anastácio de Souza**
 -   **Guilherme Ryan Rodrigues Calazans**
 -   **Gustavo Aguilar Barrionuevo**
+-   **Gustavo Almeida de Sousa**
+-   **Gustavo Silva**
+-   **Bruno de França**
+-   **Lucas Alves**
+-   ** Felipe Ribeiro**
