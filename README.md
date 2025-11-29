@@ -124,4 +124,4 @@ Projeto desenvolvido pela **Squad 09**:
 -   **Gustavo Silva**
 -   **Bruno de França**
 -   **Lucas Alves**
--   ** Felipe Ribeiro**
+-   **Felipe Ribeiro**
